@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(SOSApp());
+}
+
+class SOSApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SOS App',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+      ),
+      home: SOSHomePage(),
+    );
+  }
+}
+
+class SOSHomePage extends StatelessWidget {
+  void _sendSOS() {
+    // Here you can add your logic for sending SOS
+    // ​​For example, send SMS or call API
+    print('SOS sent!');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SOS App'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            _sendSOS();
+            // Show message that SOS has been sent
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('SOS sent!'),
+                  content: Text('We sent a distress signal'),
+                  actions: [
+                    TextButton(
+                      child: Text('ОК'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            primary: Colors.red, 
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 50),
+            textStyle: TextStyle(fontSize: 70),
+          ),
+          child: Text('SOS'),
+        ),
+      ),
+    );
+  }
+}
